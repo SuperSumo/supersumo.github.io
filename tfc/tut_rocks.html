@@ -1,0 +1,407 @@
+
+<!--	Copyright ©2003 By Daniel Gleason (aka SuperSumo)		-->
+<!--	My Email: SuperSumoZ@Yahoo.com					-->
+<!--	Page creation date: 07.19.03					-->
+<!--	Counter started at 03.23.03 (same counter from older page)	-->
+<!--	There have been 64378 hits on the page				-->
+<!--	Made the only way a page should be made...IN NOTEPAD!		-->
+
+<html>
+
+<head><title>SuperSumo's Custom TFC v7</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+<script language="JavaScript" src="main.js"></script>
+</head>
+
+<body>
+
+<a name="top">
+
+<center>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td width="50%" valign="bottom"><img src="images/dot_orange.gif" width="100%" height="10"></td>
+		<td>
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr><td colspan="17"><img src="images/title.gif" onclick="shake(15);"></td></tr>
+				<tr>
+					<td><img src="images/dot_orange.gif" width="37" height="10"></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="index.html"><img src="images/nav_news.gif" alt="The News" name="news" onmouseover="imgSwap('news')" onmouseout="restoreImage('news')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><img src="images/dot_white.gif" width="16" height="10" onclick="shake(15);"></td>
+					<td><img src="images/dot_clear.gif" width="8" height="1"></td>
+					<td><a href="sprites_xhairs.html"><img src="images/nav_sprites.gif" alt="Custom Sprites" name="sprites" onmouseover="imgSwap('sprites')" onmouseout="restoreImage('sprites')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="models.html"><img src="images/nav_models.gif" alt="Custom Models" name="models" onmouseover="imgSwap('models')" onmouseout="restoreImage('models')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="maps.html"><img src="images/nav_maps.gif" alt="My Maps" name="maps" onmouseover="imgSwap('maps')" onmouseout="restoreImage('maps')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="misc.html"><img src="images/nav_misc.gif" alt="Misc. Stuff" name="misc" onmouseover="imgSwap('misc')" onmouseout="restoreImage('misc')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="links.html"><img src="images/nav_links.gif" alt="Links" name="links" onmouseover="imgSwap('links')" onmouseout="restoreImage('links')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><img src="images/dot_orange.gif" width="6" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="50%" valign="bottom"><img src="images/dot_orange.gif" width="100%" height="10"></td>
+	</tr>
+</table>
+
+<img src="images/dot_clear.gif" width="1" height="18">
+
+<table width="544" cellspacing="0" cellpadding="2" border="0">
+
+<tr><td>
+
+<center><h1>Natural Terrain within the Quake2 Engine</h1>
+<h3>By <a href="mailto:baracuda@gamedesign.net">Barracuda</a> and <a href="mailto:fishman@gamedesign.net">Fishman</a></h3>
+<b>Converted to HTML by <a href="mailto:supersumoz@yahoo.com">SuperSumo</a></b></center>
+
+<b>I. <a href="#intro">Introduction</a></b><br>
+<b>II. <a href="#techniques">Techniques</a></b><br>
+	<blockquote>What the Professionals Say
+		<blockquote>Levelord<br>
+		Eric Biessman<br>
+		Disruptor<br>
+		Paul Jaquays<br>
+		Drizzt and Iikka Keränen<br></blockquote>
+	The Improper and Proper Techniques</blockquote>
+<b>III. <a href="#howto">How To</a></b>
+	<blockquote>Ground<br>
+	Rocks<br>
+	Cliffs<br>
+	Caves</blockquote>
+<b>IV. <a href="#conclusion">Conclusion</a></b>
+
+<!-------------------------------------------------------------------------------------->
+
+<center><a name="intro"></a><h2>Intro</h2></center>
+
+<p>The most complex task facing level designers today is the creation of realistic, natural looking terrain. Since the release of Quake2, there has been an increased amount of interest in this particular subject.  Don’t let that fool you though - creating realistic terrain while keeping the game playable is a whole new ballgame.</p>
+<p>While trying to create outdoor areas, there are basically two ways to do it: the right way, or the wrong way.  More often then not, I have noticed a great number of amateur level designers doing it the wrong way.  You’re probably wondering, "What exactly is the right or wrong?"  Hopefully, in the following paragraphs I can shed some light on the right way to create natural terrain.</p>
+<p>Some of you beginners might be wondering what makes it so difficult to create natural terrain. The biggest problem is creating a realistic scene that will have a low face count and still be fast.  Naturally outdoor areas will have a greater number of faces and brushes seen so therefore the framerate will be lower. Below are two screenshots giving you an example of how complicated an outdoor area can be compared to an indoor area.</p>
+
+<center><img src="rocks/1.jpg"><img src="images/dot_clear.gif" height="1" width="50"><img src="rocks/2.jpg"></center>
+
+<p>The first section in this design guide will focus on the different techniques that can be used, and which techniques the top designers in the business use to create natural terrain and outdoor areas. The next section will go into more detailed descriptions of the best techniques and how to use them to create specific types of terrain like caves, floors, cliffs, rivers, and rocks.  This will be followed by a detailed look into some of the advanced techniques like texture stretching and using different entities to enhance the appearance and purpose of the terrain. The design guide will end with the conclusion, and a look to how the creation of terrain will be affected by future 3d games.</p>
+
+<!-------------------------------------------------------------------------------------->
+
+<center><a name="techniques"><h2>Techniques</h2></center>
+
+<u><b>What The Professionals Say</b></u>
+
+<p>While researching for this design guide, I asked a few professional level designers that I think are the best of best at designing realistic terrain and outdoor areas, the techniques they used.  Surprisingly, I received some great responses.</p>
+
+	<ul>
+	<li><b>Levelord</b> - <a href="http://www.ritual.com" target="_blank">Ritual Entertainment</a> - Level Designer</li>
+
+	<blockquote>
+	<p>The Do’s and Don’ts of natural terrain? …Hmmm, the best advice the Old Man of the Mountains can give is to make natural terrain look natural ;) Seriously, I think the word to remember for constructing realistic, natural-looking terrain is 'irregular'. Little in nature is square and, in fact, nature is regularly irregular! Creating realistic, natural scenes in the boxy world of current 3D action game technology can be difficult because the game engine is most suited for cubic constructions. Until recently, all outside areas in levels were bounded by mountains that ascended straight upwards from a flat ground to a flat sky. Another setting that has been ill-treated is caves. Nothing is less natural-looking than a cave with flat floors, flat ceilings, and flat walls. Caves have walls that deviate and diverge; there is nothing similar to square or straight in a cave.</p>
+	<p>Brushes can assume just about any basic shape. Unfortunately, however, they usually don't and many levels are overrun with orthogonal parallels and perpendiculars. When you try to create anything natural-looking in your level, you need to make sure that you don't use square shapes too often. Keep in mind that natural objects have irregular and varying shapes. That sounds simple enough, but it is rarely practiced. With such limited space here, I would ask you to see my next article in Computer Gaming World in which I discuss topics like Minimalism and Ikebana in level designing, as well using optical illusions to suggest greater and more impressive levels with the limited tools available.</p>
+	</blockquote>
+	</ul>
+
+<p>When I was collecting ideas for this guide the first person I thought of was The Levelord. The natural realistic terrain in his creations are the most amazing seen in a quake engine game. One of the important ideas that Levelord stresses is that nature is random and you should try to create random terrain. There is a problem with this though, as Levelord states. The quake/quake2 game engine is most suited for cubic shapes which makes it difficult to create truly random natural terrain without using CSG (Constructive Solid Geometry) techniques such as Subtraction and Carving. There are ways around this though that we will look at in more depth. I will also go into more depth with some of the other points that Levelord mentions later in the guide.</p>
+
+	<ul>
+	<li><b>Eric Biessman</b> - <a href="http://www.raven.com" target="_blank">Raven Software</a> - Level Designer</li>
+
+	<blockquote>
+	<p>What Brian and I found out worked the best was skewing, edge grabbing, and vertex manipulation. I would say that your best bet is to use your camera view to make sure that all of your edges mesh, and slope and slide from there. We also used a lot of cutting planes to add odd angles and the like. CSG was something that I personally didn't use too much, but I think that each person has to find their own way to do thing.</p>
+ 	<p>Make sure that you stay away from repetitive cuts, as that tends to draw away from the reality. You have to remember that nature is pretty damn random, and even though you don't want to go too wild because of frame rate concerns, you should try and reflect that. You could make something that looks super realistic and damn cool, but you find that you are getting 2 fps on a PII 300... you have to find the right balance. Also, you should remember that opponents are going to have to be able to traverse the areas that you are making, so you need to keep enemy placement in account when you are creating.</p>
+	</blockquote>
+	</ul>
+
+<p>If you haven’t played Hexen 2 yet, you really are missing out on an awesome game.  Eric and the other designers at Raven did an excellent job.  Some of the best looking outdoor areas seen yet in a quake engine game.</p>
+<p>Eric brings up some very good points in the above quote.  For those of you beginners that don’t quite understand what <b>skewing</b> and <b>vertex manipulation</b> is, below is a simple diagram.</p>
+<center><img src="rocks/3.gif"><img src="images/dot_clear.gif" height="1" width="50"><img src="rocks/4.gif"></center>
+<p>The trick is to not overdo it though.  If you have a 32-sided cylinder, and you manipulate the vertices and skew it, you're going to create a mess of faces that will destroy your r_speeds and framerate.</p>
+<p>Eric also stresses the same point that Levelord brought up about keeping everything random. Nature is a mixture of chaos. Nothing is the same. Keep things random in your level design. Instead of cut and pasting numerous terrain prefabs, create new ones and try to keep them different each time.</p>
+
+	<ul>
+	<li><b>Disruptor</b> - <a href="http://www.idsoftware.com" target="_blank">Id Software</a> - Lead Designer</li>
+
+	<blockquote>
+	<p>Use a lot of edge manipulation to make your ground, and then use odd sided brushes (5-7 sided) for rocks, and just shear and connect them at odd angles.</p>
+	</blockquote>
+	</ul>
+
+<p>As you can see, Disruptor mentions some of the same ideas that Eric mentioned above.  Edge Manipulation is basically the same as vertex manipulation, but instead of moving one vertex you manipulate two linear vertices that remain relative to each other.</p>
+<p>Disruptor also suggests using odd sided brushes for rocks. This is much cleaner then creating a square brush and clipping it to create the rock shape. When using a large amount of clipping planes to carve terrain you will create excess faces and brushes which are not needed, and will slow the game down.</p>
+
+	<ul>
+	<li><b>Paul Jaquays</b> - <a href="http://www.idsoftware.com" target="_blank">Id Software</a> - Lead Designer</li>
+
+	<blockquote>
+	<p>When building large canyon areas, I generally create large polygon brushes (5 to 8 sided) and stretch them into the desired shape. I pull edges so that they line up with the map grid (important for the next step). Next I clone the brush, line it up with the first brush and raise it until its base touches the top of the first brush. I adjust the height, the skew the brush away from the center of the canyon I'm creating.
+	<p>I use a similar procedure to create shelfs and ledges.</p>
+	<p>Try to not lean walls in towards the player where he is walking. Doing that can create some problematic "sticking" areas.</p>
+	<p>Simpler is better.</p>
+	<p>Unless you can't avoid it, don't have your sky touch the top surface of your canyon wall.</p>
+	<p>Consider connecting large outdoor areas with man-made passage ways that end in doors. Use the area-portal function to close off these doors.</p>
+	<p>Remember that in nature, the "floor" is rarely level.</p>
+	</blockquote>
+	</ul>
+
+<p>Paul makes some fascinating comments.  One of the ideas that he mentioned that is interesting is that you should not have the sky touch the top surface of a canyon wall.  If the sky does not touch the walls of the canyon then there will be more flexibility in making terrain.  It will allow varying heights for ledges and mountains and create a more realistic light reflection off the top of the cliff wall. When the sky is flush with the cliff wall there will be a black shadow effect on the cliff wall that won’t look very good. Here is a screenshot of this very thing.</p>
+<center><img src="rocks/5.jpg"></center>
+<p>Another interesting comment that Paul mentions is that, in order to keep framerate from being high, a func_areaportal can be used with a door to end a large outdoor area. Once a door and a func_areaportal are used, you can totally block the engine from seeing past the door.  This is one of the greatest advantages with editing Quake 2 when compared with Quake 1.  There was no way to block the engine from seeing through doors in Quake1, which severely limited the creation of large, detailed areas.<p>
+
+<p>I had a chance to speak with Drizzt, who made the amazing level Fusion; and Iikka Keränen, level designer at Ion Storm, and creator of numerous quake and Quake2 levels as well as AirQuake, on IRC.</p>
+
+	<blockquote>
+	<<b>Fishman</b>>Wonder if you could tell me how you made those kickass caves and cliff walls...vertex manipulation? CSG?<br>
+	<<b>Drizzt</b>>Just skewing.  Create and stack 3 8 sized brushes.  Then skew the bottom plane of the lowest brush inward, the top plane of the middle brush inward, and the topmost brush even more inward...then copy/rotate the 3 brush section<br>
+	<<b>Fishman</b>>Any other tips on what to do or what not to do?<br>
+	<<b>Drizzt</b>>As far as other tips...set some conventions for yourself, and stick too them.  For example, I try to keep all my brushes in multiples of 32 units, so that texture alignment is easier.  And use as little CSG as possible :)  Especially when you're dealing with angled planes.  Otherwise, you can end up with all sorts of weird leaks and errors.
+	</blockquote>
+
+<p>Drizzt brings up some very interesting points.  I especially like the comment about keeping all your brushes in multiples of 32 units, to make texture alignment easier. Most of the Quake2 textures are in multiples of 32 units - like 32, 64, 96, etc.  If you have your terrain brushes in multiples of 48 or 68 then it will be extremely difficult to line the textures up.</p>
+<p>He also goes into detail on some specific techniques he uses. We will look at these in more depth in the next section.</p>
+
+<p>Below is the short IRC interview I had with Iikka Keränen, Level Designer for Ion Storm:</p>
+
+	<blockquote>
+	<<b>Fishman</b>>Wonder if you could explain how you create realistic outside areas?  do you carve a lot or stick with simple rotated brushes without carving, etc<br>
+	<<b>Fingers</b>>I don't carve if you mean computerized CSG tools  I make a lot of brushes and move the vertices around<br>
+	<<b>Fishman</b>>So you just stick with basic rectangular brushes and just position?<br>
+	<<b>Fingers</b>>Well, basic rectangular brushes is where I may start...  But I move the edges and vertices to make angled surfaces and natural shapes.  And I make ground sometimes from triangles, those are nicely flexible...
+	</blockquote>
+
+<p>So Iikka uses a lot of vertex and edge manipulation to create the natural realistic look. I like his technique of using triangles for ground. I will take a closer look at this technique in a future chapter.</p>
+<p>As you may have noticed while reading all the information from the professional designers that I questioned, they basically all agree on the simple ideas when creating natural terrain and realistic outdoor areas.  So now I will sum up all the techniques mentioned and which are the proper and improper techniques to use.</p>
+
+<u><b>The Improper Techniques</b></u><br><br>
+
+<p>A vital concern for level designers is to keep the framerate and r_speeds low, while trying not to sacrifice realism. Keeping shapes simple and avoiding CSG techniques such as subtraction and extreme angle carving, you will avoid framerate problems. Not only will a large amount of subtraction and carving decrease your framerate; it will also substantially increase your vis time.  At first, you might think that the only way to get a natural realistic look to rocks or mountains would be to carve and subtract to get an odd shaped brush, thus looking realistic. This is far from the truth. Yes, carving and subtracting will create awesome, realistic, natural terrain, but it will come back to haunt you in the future when your r_speeds are > 1000. Here is an important quote from Paul Jaquays about this very subject:</p>
+<blockquote>Carving often creates and uncontrollable number of polygon faces. So, carving should be reserved for areas in which your field of view will be limited. The underwater cave areas of City64 were carved out of solid rectangular brushes. When carving in that manner, build the volumes with which you will carve, mark it as a func_group then surround it with the brush to be carved. Do the subtraction, then pull your "carving tool" out and set it aside. BSP the result to see if it worked or made too many faces, etc. If it doesn't work right, throw the mess out, ungroup your carving tool and modify it and repeat the process. - <b>Paul Jaquays</b></blockquote>
+<p>So carving and subtraction CAN be ok if it is used in very small-secluded areas where you know that the player won't be subjected to a large linear line of sight. Be very careful though. Keep checking your r_speeds and make sure they don’t get out of hand.</p>
+
+<u><b>The Proper Techniques</b></u><br><br>
+<p>From reading all the comments from the designers above, it's pretty simple to determine the right techniques to create realistic terrain. Skewing and vertex manipulations are the best techniques when creating terrain.  Why, you may ask, are these the best techniques?  Very simple.  When you skew a brush the poly count doesn’t change.  The same thing goes with vertex manipulation.  You're only moving the vertices, not creating more brushes or faces.  On the other hand, when you use CSG techniques such as subtraction and carving you are going to create more brushes and faces, which will lead to lower framerate and higher r_speeds.</p>
+<p>In the next few sections I will explain the exact details involved in creating specific terrain structures using these techniques, then I will explain some of the more advanced tips and tricks that can be used.</p>
+
+	<blockquote>
+	<b>Important Things to remember:</b><br>
+	1. Use skewing and vertex manipulation instead of CSG techniques such as Carving and Subtraction.<br>
+	2. Use odd 5 to 7 sided brushes.<br>
+	3. Use cutting planes to slice off angles near the tops of the terrain. Try not to overuse.<br>
+	4. Keep everything random. Nothing is repetitive in nature.<br>
+	5. Keep everything on the same map grid. It's easier to keep things lined up with a grid of 8-32.<br>
+	6. Try to keep all brushes in multiples of 32 pixels to make texture alignment easier.<br>
+	7. Don't have your sky touch the top surface of the terrain.<br>
+	8. Stay away from Carving and Subtraction as much as possible!
+	</blockquote>
+
+<!-------------------------------------------------------------------------------------->
+
+<center><a name="howto"></a><h2>Howto</h2></center>
+
+<p>So, you think you're ready to create some of your own cool ass terrain? Well you've definately ended up in the right corner of cyber space.</p>
+<p>Things we'll be covering are ground, rocks, cliffs, and caves. I recommend that you read through this in that order to get the most out of it, as we will be building from the ground up.</p>
+<p>This tutorial depends highly on the fact that you know how to clip, skew faces, skew entire brushes, and do vertex manipulation. If you don't know how to do any of these things, I suggest you search for some documentation or tutorials for your editor that demonstrate these techniques.</p>
+<p>With that all said and done, let's get this thing started! This could get interesting :)</p>
+
+<u><b>Ground</b></u><br><br>
+
+<p>Creating realistic looking ground is pretty easy. There are many ways you can go about making your ground, some better than others. I'm going to show the easiest and best method there is, The Triangle Method!</p>
+
+<p>The first thing to do is create a basic layout for the area you want to put the ground in. This shouldn't be anything complex, in fact it should be very linear so that you don't have to go crazy putting in sky brushes when you're done. You'll be able to add plenty of detail later. Below is a picture of the area that I created.</p>
+
+<center><img src="rocks/6.jpg"></center>
+
+<p>What you want to do is fill up your area that you created with a bunch of triangles that around 16 units in height. This is supposed to be natural looking terrain, so vary the triangles in size and shape. The only thing you have to do is make sure your triangles vertexes all meet the vertexes of another triangle. It will be very hard to line up the triangles in the next step if you have the vertexes of your triangles touching the sides of another triangle. Below is a picture of what my XY view looks like once I've filled my area up with triangles.</p>
+
+<center><img src="rocks/7.jpg"></center>
+
+<p>Next you want to begin raising and lowering touching vertexes. The easiest way to move the vertexes is in the 3d View, but if your editor doesn't support that, you can still do it in the YZ and XZ views. It doesn't matter where you start, but it's a lot easier if you start in a corner somewhere. What you do is grab a vertex and pull it up anywhere from 8 to 48 units, depending on how smooth or rough you want your ground to be. You can move the vertexes more than 48 units, but remember the higher you go, the harder it will be for the player to get through the area. Once you do the first vertex, pull the vertex that was touching the first vertex to the same height as the first vertex is. Below are a few pictures that show how to move the vertexes.</p>
+
+<center><img src="rocks/8.jpg"><img src="images/dot_clear.gif" height="1" width="50"><img src="rocks/9.jpg"></center>
+
+<p>Keep going until you have manipulated all of your triangles and you are satisfied with the results. That's all there is too it! With just a little work you now have some very realistic looking ground and you have some great r_speeds. All that's missing is the rest of this outside area! We'll fix that in the Rock Section though :) Here's a picture of what I ended up with. Take note of the r_speeds, plenty of room to add some really detailed canyon walls in there.</p>
+
+<center><img src="rocks/10.jpg"><br>
+Maybe those early explorers were right about being able to fall off the edge of the Earth! Nah =)
+</center><br><br>
+
+<u><b>Rocks</b></u><br><br>
+
+<p>Creating realistic looking rocks, such as canyon walls, takes a bit of work. As you probably noticed in the earlier sections of this interview, there are some methods that should be used and some that should be avoided.</p>
+<p>Personally, I have never carved and don't intend to when I'm creating rocks or rock walls. The best methods you can use are skewing faces and clipping because they don't affect the number of brushes.</p>
+<p>With that said, let's get started!</p>
+<p>The Cylander Method is the easiest of all methods to create rock walls. What you do is create a layout for your area and begin forming the walls with odd-sided cylanders. I'm going to be using the ground we just created in the Ground section. Make sure you have cylanders that touch each other touch on actual points in the grid, that will make things a lot easier in the later steps. Once you have your walls all built up to the height you want, go alonge the outside of the level and clip off the backs of the cylanders that you can't see so that the outside walls are flat. Here's a picture of my XY view showing how I placed the cylanders. I've filled the sky brushes in blue so you can see how the rocks should align up against it. (Btw, the rocks walls are outlined in red… all those other lines are the triangles from our ground =)</p>
+
+<center><img src="rocks/11.gif"><br>See how the cylander is placed along the sky?<br>
+One problem though, we've got excess faces of<br>
+the rock that can't be seen that we need to clip off.<br>
+What needs clipped off is outlined in yellow.
+</center><br><br>
+
+<center><img src="rocks/12.gif"><br>
+In this picture we've taken away the excess faces on the backs<br>
+of our rocks. Pay attention to how the rocks meet at points in<br>
+order to be sure there are no gaps between them later.
+</center><br><br>
+
+<p>If you've looked at your 3d View since you're put the rocks in, you might be saying "This doesn't look too good yet!!!" That's because we're not done yet! Remember above how I said clipping and skewing worked best? Well, that's what we're about to do now!</p>
+<p>First thing to consider is how tall you want your rock walls, so adjust the height of all your cylanders to your liking now because it'll be a pain to do it later after you've clipped and skewed everything. Now decide whether you want your rock walls to be steep, have a nice smooth slope to them, or even slope from the top. Which ever way you choose will affect how you skew the rocks. If you want a smooth slope, you'll skew the bottoms of your rock out pretty far. If you want a steep slope, you'll skew the bottoms out very little or maybe not at all. If you want the rock to hang over from above, you'll have to skew the top of the rock towards the inside of the map. Below is a picture of skewing the top of a rock out and making a smooth sloped rock.</p>
+
+<center><img src="rocks/13.jpg"><br>
+This shows you how to make the top of a rock skew<br>
+outwards. I've circled the top point that we drag<br>
+to skew the face and made it green in the camera.<br>
+Also, the rock on the top is the rock before we<br>
+actually skewed the face and the rock on the<br>
+bottom is, of course, the rock that we skewed.
+</center><br><br>
+
+<p>After you do the first rock, move on to the next one. Be careful to skew the brushes different ammounts and possible vary the method of skewing you use to keep things looking natural. Here's what I ended up with after I skewed everything.</p>
+
+<center><img src="rocks/13.jpg"><br>
+That's what my rock wall looks like in the<br>
+camera right now, after I've skewed the<br>
+faces around. If you look closely, you can<br>
+see that the rock on the right has it's<br>
+bottom skewed inwards, while the other two<br>
+Have their tops skewed inwards.<br>
+<br>
+Also, when skewing your brushes, try not<br>
+to modify vertices that touch other rock<br>
+brushes. By doing this, you'll end up with<br>
+rocks that line up together perfectly.
+</center><br><br>
+
+<p>Alright, now let's do some clipping. Look at the tops of your rocks, pretty flat? We can fix that. What we want to do is clip the tops of the brushes so they are sloped and meet the other brushes at different angles. It might also be good to clip sideways across the brush too. This is done by clipping from somewhere in the middle of the brush to the top of it in either the XZ or YZ view, depending on which direction your rock is facing in the XY. Here's a few pics that demonstrate how to do the clip. Confused? Take a look at these pictures and pay close attention to how the rocks all meet at the top. (Btw, that yellow line represents the clipping plane.)</p>
+
+<center><b>Step 1</b><br><img src="rocks/14.jpg"><br>
+First thing we want to do is go into either<br>
+our XZ or YZ view, depending on which way<br>
+your rocks are facing. Then simply place your<br>
+two clip points to trim off a piece of the<br>
+rock. My points would be at each end of the<br>
+yellow line, which represents the clipping plane.
+</center><br><br>
+
+<center><b>Step 2</b><br><img src="rocks/15.jpg"><br>
+Now we move on to the second rock. What we<br>
+need to do now is make this rock meet up<br>
+with it's neighboring rock by clipping with<br>
+a plane that shares the point of the first<br>
+rock that's touching the second rock.
+</center><br><br>
+
+<center><b>Step 3</b><br><img src="rocks/16.jpg"><br>
+Still on the second rock, doing a second clip<br>
+to make the rock look more rounded over. Only<br>
+thing you need to do is make a different<br>
+clipping plane than the first one you used.
+</center><br><br>
+
+<center><b>Step 4</b><br><img src="rocks/17.jpg"><br>
+Now switch to your YZ or XZ view (opposite<br>
+the one your were just in) and clip across the<br>
+side of the brush. By doing this we can make<br>
+the brush appear rounded over at the top.
+</center><br><br>
+
+<p>Clipping is also very handy for adding odd angles to your terrain and shaping in general. What we want to do is clip off the fronts of some of our rocks to get an extra angle in there. To do this, you want to take your brush and clip a piece of it off. The best place to clip is the across the part that is skewed out in the XY view because you won't affect the entire brush when you clip. Be careful when you are going to clip the brush from above, always check in the 3D View to make sure your brushes are going to line up after the clip! The best thing to do is move the clip path around and keep checking the camera until your are satisfied with what will be left after the clip.</p>
+
+<center><img src="rocks/19.jpg"><br>
+Take a look at the XY View below to see how this<br>
+clip is done. See how we are only taking away from<br>
+the fronts of the brushes and not messing up the<br>
+edges of the brushes that touch eachother? That's<br>
+a good thing =) The only thing that you need to<br>
+make sure the player can't walk under these parts<br>
+you clipped away and get crushed. It's very easy<br>
+for a player to get stuck under a brush that slopes<br>
+inward too sharply from above.<br>
+<br><br><img src="rocks/20.gif">
+</center><br><br>
+
+<p>I like to do a lot of clipping, sometimes I may do this type of clipping as many as 3 or 4 times to a single rock. Nature is natural, so adding in odd angles to create odd shapes is a good thing. As always, you can go overboard, so keep an eye on how many faces you have before you decide to clip and possibly create another one. If you thik you have too many faces, load the map up in the game and check the r_speeds. If the r_speeds are good then you can go ahead and do some more clipping.</p>
+<p>Finally, after all that work we have some cool canyon walls! Here's what I ended up with.</p>
+
+<center><img src="rocks/21.jpg"><br><br><img src="rocks/22.jpg"></center><br>
+
+<u><b>Cliffs</b></u><br><br>
+
+<p>Making cliffs is very similar to creating rock walls except for one big difference. When you make rock walls you make them go all the way to the sky so that the player can not get on top of them. If you have a cliff then you generally want the player to see the top of it clearly and possibly even walk along the cliffs.</p>
+<p>Most everything from the Rock section applies here, so make sure you have read that before you start with this section. Let's get this thing started already!</p>
+<p>I'm going to use the the layout from the ground section that we just added rock walls to in the last section. Ok, second thing you need to do is figure out where you want your cliffs and if you want the player to be able to get to on top of them at all. If you want the player to get on top of them, you'll need to make parts of the cliff at varied heights so that the player can jump their way up onto the cliff.</p>
+<p>Ok, so select the brushes of the rock wall where you want the cliff to be, make a copy of them and clip off the tops of them at the height you want your cliff to be. Now, what you want to do is drag your rock brushes into the map until your satisfied with the size of the cliff. Once you're satisfied with the cliff, stretch the back sides of the cliffs that should touch the sky back to touch the sky again. That's basically all there is to making cliffs! If you want, you could make some sections of the cliff at a different height or make some of them sloped on their tops by clipping them… the sky is the limit =)</p>
+
+<center><img src="rocks/23.jpg"><br>
+See how the cliff and rock wall are the same brush?<br>
+All you do is clip make a copy of the rock wall and<br>
+Clip it off shorter than the rock wall. Then move<br>
+Your cliff brush out into the map and stretch it's<br>
+Back to touch the sky again. It's that easy =)
+</center><br><br>
+
+<p>Last thing to do is select our rock wall that goes along our cliff and clip off their bottoms wherever they intersect the cliff, most likely along the same clipping plane you clipped your cliffs from in the first step.</p>
+<p>All said and done, here's what my cliff ended up looking like.</p>
+
+<center><img src="rocks/24.jpg"></center><br>
+
+<u><b>Caves</b></u><br><br>
+
+<p>Creating a cave is very similar to creating canyon walls, with the only exception being that you have a ceiling that is rock instead sky. If you haven't gone through the Rocks section, do that before you read through this section.</p>
+<p>First thing you need is a layout for your cave. Decide where you want to put it, what kind of stuff is going to be in the cave, how big it should be inside, anything you can thing of that you want in the cave.</p>
+<p>Ok, second thing to do is cut a hole into your rock wall to put the entrance of the cave in. Now, when I say cut, I DO NOT mean carve! What you want to do is decide now high your entrance will be and split the rock wall at that height. Look at the picture below which shows this.</p>
+
+<center><img src="rocks/25.jpg"><br>
+See how we've split those two rock wall brushes into<br>
+a top and bottom part? All you do is clip across them<br>
+in the XY or YZ view. The yellow line is the clipping<br>
+plane that I used to do the clip.
+</center><br><br>
+
+<p>Now we want to build our entrance. For this example, I've chosen to build a support frame for the entrance. So all you need to do in this situation is build the frame and clip the two brushes that are selected above in the XY so that they meet the edge of your frame. Look at the picture below to see what the hell I'm talking about =)</p>
+
+<center><img src="rocks/26.jpg"><br>
+See how those rock wall brushes come right up to<br>
+the edge of my doorway support? That's what we want<br>
+to happen! All you have to do is build the frame<br>
+and then clip along the two vertical parts of the<br>
+frame so that you take away the part of the rocks<br>
+that are in the doorway.
+</center><br><br>
+
+<p>As I said above, pretty much everything that applies to creating rocks works for creating caves too. Simply build up your cave walls by skewing and clipping them, but don't clip off the tops of them! You want their tops to be flat so they line up with the ceiling right. Even if you have a slanted or uneven ceiling, it's way easier to still keep the tops of your cave walls flat and the same height.</p>
+
+<center><img src="rocks/27.jpg"><br>
+I feel like a bear standing inside this cave… maybe<br>
+I should make like Yogi Bear and go steal a picnic<br>
+basket =)
+</center><br><br>
+
+<p>Here's what my cave ended up looking like.</p>
+
+<center><img src="rocks/28.jpg"><br><br>
+<img src="rocks/29.jpg"><br>Would you look at that! Isn't that interesting?</center>
+
+<!-------------------------------------------------------------------------------------->
+
+<center><a name="conclusion"></a><h2>Conclusion</h2></center>
+
+<p>Well, it's been a long time in  the making… I sure hope you all enjoyed this little guide to making natural terrain =)</p>
+<p>One thing Fishman and I have learned is that it's more than 10 times harder to explain to someone how to make natural terrain that it is to actually create it.</p>
+<p>This Style Guide is not meant to teach you how to build terrain, rather it is meant to show you how to make terrain. It's just not feasible for us to explain to you every single clip and every single skew of every single brush! This guide is full of info that you can use to polish and develop your own style of building natural terrain.</p>
+<p>So, I guess this is the end… until next time =)</p>
+
+<center><h1>THE END</h1></center>
+
+</td></tr>
+</table>
+
+<img src="images/dot_orange.gif" height="10" width="100%"><br>
+<img src="images/dot_clear.gif" height="15" width="1"><br>
+<a href="#top"><img src="images/arrow.gif" alt="Back to the top"></a> All this stuff is ©2006 By <a href="mailto:SuperSumoZ@Yahoo.com">Daniel Gleason</a> (aka SuperSumo) <a href="#top"><img src="images/arrow.gif" alt="Back to the top"></a>
+</center>
+
+</body>
+</html>

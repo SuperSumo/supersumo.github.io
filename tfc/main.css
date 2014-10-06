@@ -1,0 +1,30 @@
+body
+{
+	scrollbar-face-color:		#FFFFFF;
+	scrollbar-highlight-color:	#FFFFFF;
+	scrollbar-3dlight-color:	#000000;
+	scrollbar-shadow-color:		#FFFFFF;
+	scrollbar-darkshadow-color:	#000000;
+	scrollbar-arrow-color:		#000000;
+	scrollbar-track-color:		#000000;
+	background-color:		#000000;
+	color:				#FFFFFF;
+	font-family:			Verdana;
+	font-size:			12px;
+	margin-top:			20;
+	margin-bottom:			20;
+	margin-left:			0;
+	margin-right:			0;
+}
+
+td				{ color:#FFFFFF; font-family:Verdana; font-size:12px; }
+td.header			{ color:#FFFFFF; font-family:Verdana; font-size:16px; }
+
+img				{ border:0; }
+
+A:link				{ text-decoration:none; color:#FF6600; }
+A:hover, A:visited, A:active	{ text-decoration:underline; color:#FF6600; }
+
+input, textarea			{ font-family:Verdana; font-size: 12px; border-width:1; border-color:#FF6600; border-style:solid; background-color:#FFFFFF; color:#FFFFFF; }
+
+p.quote				{ background-color:#646464; }

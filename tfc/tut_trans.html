@@ -1,0 +1,192 @@
+
+<!--	Copyright ©2003 By Daniel Gleason (aka SuperSumo)		-->
+<!--	My Email: SuperSumoZ@Yahoo.com					-->
+<!--	Page creation date: 07.19.03					-->
+<!--	Counter started at 03.23.03 (same counter from older page)	-->
+<!--	There have been 64376 hits on the page				-->
+<!--	Made the only way a page should be made...IN NOTEPAD!		-->
+
+<html>
+
+<head><title>SuperSumo's Custom TFC v7</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+<script language="JavaScript" src="main.js"></script>
+</head>
+
+<body>
+
+<a name="top">
+
+<center>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td width="50%" valign="bottom"><img src="images/dot_orange.gif" width="100%" height="10"></td>
+		<td>
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr><td colspan="17"><img src="images/title.gif" onclick="shake(15);"></td></tr>
+				<tr>
+					<td><img src="images/dot_orange.gif" width="37" height="10"></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="?page=news.htm"><img src="images/nav_news.gif" alt="The News" name="news" onmouseover="imgSwap('news')" onmouseout="restoreImage('news')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><img src="images/dot_white.gif" width="16" height="10" onclick="shake(15);"></td>
+					<td><img src="images/dot_clear.gif" width="8" height="1"></td>
+					<td><a href="?page=sprites_xhairs.htm"><img src="images/nav_sprites.gif" alt="Custom Sprites" name="sprites" onmouseover="imgSwap('sprites')" onmouseout="restoreImage('sprites')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="?page=models.htm"><img src="images/nav_models.gif" alt="Custom Models" name="models" onmouseover="imgSwap('models')" onmouseout="restoreImage('models')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="?page=maps.htm"><img src="images/nav_maps.gif" alt="My Maps" name="maps" onmouseover="imgSwap('maps')" onmouseout="restoreImage('maps')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="?page=misc.htm"><img src="images/nav_misc.gif" alt="Misc. Stuff" name="misc" onmouseover="imgSwap('misc')" onmouseout="restoreImage('misc')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><a href="?page=links.htm"><img src="images/nav_links.gif" alt="Links" name="links" onmouseover="imgSwap('links')" onmouseout="restoreImage('links')"></a></td>
+					<td><img src="images/dot_clear.gif" width="9" height="1"></td>
+					<td><img src="images/dot_orange.gif" width="6" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="50%" valign="bottom"><img src="images/dot_orange.gif" width="100%" height="10"></td>
+	</tr>
+</table>
+
+<img src="images/dot_clear.gif" width="1" height="18">
+
+<table width="544" cellspacing="0" cellpadding="2" border="0">
+
+<tr><td bgcolor="#646464"><b>How To Make Translucent Models</b></td></tr>
+<tr><td>
+	<br>
+	<p><b>Needed Files</b>:<br>
+	<a href="http://collective.valve-erc.com/data/docs/1047496381-02062100/files/studiomdl.exe" target="_blank">studiomdl.exe</a> (for compiling)<br>
+	<a href="http://www.custom-tfc.co.uk/files/misc/new-dlls.zip" target="_blank">The Transparent DLLs</a> (so you can see the effects ingame)</p>
+
+	<p>This is a long read, but this is how you do it. This is how I do it, this is how everyone does it. If you want to learn (PLEASE WANT TO LEARN!!!), then you have to read it all. A retard can follow this tutorial, so if you can't, please kill yourself. :)</p>
+	<p>Since I'm getting like 1 trillion messages a day asking to make something transluscent, I'm making a simple tutorial. Before you begin, you need milkshape, the new studiomdl, and the new dlls. The dlls go into your halflife root folder. For me, that is <b>D:/Halflife/</b>.</p>
+	<p>If you are doing a default model, you will need to extract it from the pak file. You can do that with pakscape.</p>
+	<p><b>Step 1</b>: For this tutorial I'm going to do the single shotgun. Copy the model into some crazy directory on your desktop (or somewhere else on your HD. Make sure it's in there by itself though).</p>
+	<p><b>Step 2</b>: Copy <b>studiomdl.exe</b> into the folder you created.</p>
+	<p><b>Step 3</b>: Open up milkshape. Go to <b>tools->halflife->decompile normal hl mdl file</b> and browse to the model you want to translucify. Make sure all 4 check boxes are checked.</p>
+	<p><b>Step 4</b>: Go to the folder where you put your model at. Delete the model.</p>
+	<p><b>Step 5</b>: Open up the <b>v_tfc_12gauge.qc</b> file in notepad. It should look something like this:</p>
+<p class="quote">
+	$modelname "C:\New Folder\v_tfc_12gauge.mdl"<br>
+	$cd "\New Folder\"<br>
+	$cdtexture "\New Folder\"<br>
+	$cliptotextures<br>
+	<br>
+	$scale 1.0<br>
+	<br>
+	// 1 attachments<br>
+	$attachment 0 "Bip01 R Hand" 30.0 1.0 6.0<br>
+	<br>
+	// 0 bone controllers<br>
+	<br>
+	// 5 hit boxes<br>
+	$hbox 0 "Bip01 L Arm2" 0.0 -2.03 -2.94 12.71 1.84 2.2<br>
+	$hbox 0 "Bip01 L Hand" 0.0 -0.79 -1.77 4.12 1.25 1.89<br>
+	$hbox 0 "Bip01 L Finger0" -0.12 -1.22 -0.32 1.45 0.66 0.84<br>
+	$hbox 0 "Bip01 R Hand" -5.19 -0.57 -0.59 24.37 1.46 5.79<br>
+	$hbox 0 "Bone01" -0.54 -1.84 -1.9 6.9 1.03 1.79<br>
+	<br>
+	$bodygroup studio<br>
+	{<br>
+	studio "v_tfc_12gauge_reference_REMAP"<br>
+	}<br>
+	<br>	
+	$bodygroup studio<br>
+	{<br>
+	studio "shell"<br>
+	}<br>
+	<br>
+	// 10 sequences<br>
+	$sequence sm_idle "sm_idle" loop fps 9<br>
+	$sequence shoot "shoot" fps 20 { event 5001 0 "31" }<br>
+	$sequence shoot_big "shoot_big" fps 13 { event 5001 0 "41" }<br>
+	$sequence reload "reload" fps 16<br>
+	$sequence pump "pump" fps 13<br>
+	$sequence start_reload "start_reload" fps 12<br>
+	$sequence draw "draw" fps 24<br>
+	$sequence reholster "reholster" fps 30<br>
+	$sequence idle4 "idle4" loop fps 9<br>
+	$sequence deepidle "deepidle" loop fps 12<br>
+</p>
+	<p>Now that you have your model decompiled, <b>DON'T MOVE ANYTHING AROUND ON YOUR HARD DRIVE!</b> It will mess up the paths at the beginning of the qc file and mess you up when you try to compile.</p>
+	<p><b>Step 6</b>: Add this line into the qc file for every texture in the folder that you want to make translucent.</p>
+<p class="quote">$texrendermode "texture_name.bmp" "additive"</p>
+	<p>For the single shotgun, you would add these lines.</p>
+<p class="quote">
+	$texrendermode "12gauge_chrome.bmp" "additive"<br>
+	$texrendermode "12gauge_pump.bmp" "additive"<br>
+	$texrendermode "12gauge_receiver.bmp" "additive"<br>
+	$texrendermode "12gauge_stock.bmp" "additive"<br>
+	$texrendermode "dm_base.bmp" "additive"<br>
+	$texrendermode "rubberglovechrome.bmp" "additive"<br>
+	$texrendermode "shell.bmp" "additive"<br>
+</p>
+	<p><b>SPELLING IS VERY VERY IMPORTANT!!!</b> If you make one mistake, it won't compile. Make sure you have the names <b>EXACTLY</b> like they are listed in the folder. I usually put these lines above the sequences part in the qc file. I don't know why, you can really put them anywhere.</p>
+	<p>A completed qc file would look like this:</p>
+<p class="quote">
+	$modelname "C:\New Folder\v_tfc_12gauge.mdl"<br>
+	$cd "\New Folder\"<br>
+	$cdtexture "\New Folder\"<br>
+	$cliptotextures<br>
+	<br>
+	$scale 1.0<br>
+	<br>
+	// 1 attachments<br>
+	$attachment 0 "Bip01 R Hand" 30.0 1.0 6.0 <br>
+	<br>
+	// 0 bone controllers<br>
+	<br>
+	// 5 hit boxes<br>
+	$hbox 0 "Bip01 L Arm2" 0.00 -2.03 -2.94 12.71 1.84 2.2<br>
+	$hbox 0 "Bip01 L Hand" 0.0 -0.79 -1.77 4.12 1.25 1.89<br>
+	$hbox 0 "Bip01 L Finger0" -0.12 -1.22 -0.32 1.45 0.66 0.84<br>
+	$hbox 0 "Bip01 R Hand" -5.19 -0.57 -0.59 24.37 1.46 5.79<br>
+	$hbox 0 "Bone01" -0.54 -1.84 -1.9 6.9 1.03 1.79<br>
+	<br>
+	$bodygroup studio<br>
+	{<br>
+	studio "v_tfc_12gauge_reference_REMAP"<br>
+	}<br>
+	<br>
+	$bodygroup studio<br>
+	{<br>
+	studio "shell"<br>
+	}<br>
+	<br>
+	$texrendermode "12gauge_chrome.bmp" "additive"<br>
+	$texrendermode "12gauge_pump.bmp" "additive"<br>
+	$texrendermode "12gauge_receiver.bmp" "additive"<br>
+	$texrendermode "12gauge_stock.bmp" "additive"<br>
+	$texrendermode "dm_base.bmp" "additive"<br>
+	$texrendermode "rubberglovechrome.bmp" "additive"<br>
+	$texrendermode "shell.bmp" "additive"<br>
+	<br>
+	// 10 sequences<br>
+	$sequence sm_idle "sm_idle" loop fps 9<br>
+	$sequence shoot "shoot" fps 20 { event 5001 0 "31" }<br>
+	$sequence shoot_big "shoot_big" fps 13 { event 5001 0 "41" }<br>
+	$sequence reload "reload" fps 16<br>
+	$sequence pump "pump" fps 13<br>
+	$sequence start_reload "start_reload" fps 12<br>
+	$sequence draw "draw" fps 24<br>
+	$sequence reholster "reholster" fps 30<br>
+	$sequence idle4 "idle4" loop fps 9<br>
+	$sequence deepidle "deepidle" loop fps 12<br>
+</p>
+	<p><b>Step 7</b>: Now that you have your completed qc ready to go, all you have to do is drag it onto the <b>studiomdl.exe</b>. If all goes well, it should compile and you should have a model there again. Copy the model into your <b>halflife/tfc/models</b> directory. For me, that would be <b>D:/Halflife/tfc/models/</b>. If you have the dlls in your halflife root like I said to do above, it should work fine.</p>
+	<p><b>Step 8</b>: Pat yourself on the back, because you saved a customizer much time, and you learned something new, which might lead you to making other cool custom tfc stuff.</p>
+	<p><i>Just for Nam...</i></p>
+	<p><b>Step 9</b>: Close out of milkshape before you run halflife, otherwise it will be choppy.</p>
+</td></tr>
+<tr><td><img src="images/dot_clear.gif" width="1" height="14"></td></tr>
+</table>
+
+<img src="images/dot_orange.gif" height="10" width="100%"><br>
+<img src="images/dot_clear.gif" height="15" width="1"><br>
+<a href="#top"><img src="images/arrow.gif" alt="Back to the top"></a> All this stuff is ©2006 By <a href="mailto:SuperSumoZ@Yahoo.com">Daniel Gleason</a> (aka SuperSumo) <a href="#top"><img src="images/arrow.gif" alt="Back to the top"></a>
+</center>
+
+</body>
+</html>
