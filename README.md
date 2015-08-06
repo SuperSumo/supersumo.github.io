@@ -1,4 +1,4 @@
 supersumo.github.io
 ===================
 
-The website of http://www.pyre.co
+Look under /tfc for all my custom TFC stuff.
